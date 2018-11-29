@@ -1,11 +1,11 @@
 export class HttpClient{
 
-     accessTokenKey : string = "access_token_key";
+    private static accessTokenKey : string = "access_token_key";
 
     /**
-     * name
+     * PostJson
      */
-    public PostJson(url : string,data : Object) :Promise<Response>{
+    public static PostJson(url : string,data : Object) :Promise<Response>{
        return fetch(url,{
           body: JSON.stringify(data), // must match 'Content-Type' header
           cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -21,11 +21,11 @@ export class HttpClient{
         })
     }
 
-    public getAccessToken() : string {
+    private static getAccessToken() : string {
         return localStorage.getItem(this.accessTokenKey);
     }
 
-    public setAccessToken(accessToken : string) : void {
+    public static setAccessToken(accessToken : string) : void {
         localStorage.setItem(this.accessTokenKey,accessToken);
     }
 }

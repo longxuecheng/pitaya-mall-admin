@@ -5,37 +5,8 @@ import {DrawerProps} from 'antd/lib/drawer'
 import {ColumnProps,TableProps} from 'antd/lib/table'
 import Column from 'antd/lib/table/Column';
 import { throws } from 'assert';
+import { HttpClient } from './common/HttpClient';
 
-/* const data = [{
-  orderNo: 'order_0001',
-  userName: 'John Brown',
-  createTime: '2018-07-01',
-  address: 'New York No. 1 Lake Park',
-  expressCompany: '顺丰',
-  phoneNo: '189117928319',
-},{
-  orderNo: 'order_0002',
-  userName: 'Lucy',
-  createTime: '2018-07-01',
-  address: 'Manhaton',
-  expressCompany: '百世汇通',
-  phoneNo: '189117928319',
-},{
-  orderNo: 'order_0003',
-  userName: 'Kimmy',
-  createTime: '2018-07-01',
-  address: 'China',
-  expressCompany: '圆通',
-  phoneNo: '189117928319',
-},{
-  orderNo: 'order_0004',
-  userName: 'Wendy',
-  createTime: '2018-07-08',
-  address: 'Beijing 回龙观',
-  expressCompany: '韵达快递',
-  phoneNo: '189117928319',
-}];
-*/
 interface IOrderRecord{
   orderNo: string,
   userName: string,
@@ -194,21 +165,7 @@ export class OrderListPage extends React.Component<IPageProps,IPageState>{
     // console.log(this.items)
     if(this.checkPageStateChange()){
         const json = {"orderNo":"OrderNo123","phoneNo":"18911792314","pageNo":this.state.pageNo,"pageSize":this.state.pageSize}
-    
-        fetch("http://localhost:8090/manage/sale/order/list",{
-          body: JSON.stringify(json), // must match 'Content-Type' header
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          credentials: 'same-origin', // include, same-origin, *omit
-          headers: {
-            'Authorization':'c34393d2-76f0-4dd3-82e8-b62e61198566',
-            'user-agent': 'Mozilla/4.0 MDN Example',
-            'content-type': 'application/json'
-          },
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          mode: 'cors', // no-cors, cors, *same-origin
-          redirect: 'follow', // manual, *follow, error
-          referrer: 'no-referrer', // *client, no-referrer
-        })
+        HttpClient.PostJson("http://localhost:8090/manage/sale/order/list",json)
         .then(response => {
           if(response.headers.get("content-type") === "application/json;charset=UTF-8") {
             return response.json().then(JsonData => {
