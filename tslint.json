@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "ordered-imports": false,
+    "import-sources-order": false,
+    "named-imports-order": "any",
+    "object-literal-sort-keys": false,
+    "no-console": ["error", { "allow": ["warn"] }],
+  },
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts",
+      "coverage/lcov-report/*.js"
+    ]
+  }
+}
