@@ -4,7 +4,7 @@
     "import-sources-order": false,
     "named-imports-order": "any",
     "object-literal-sort-keys": false,
-    "no-console": ["error", { "allow": ["warn"] }],
+    "no-console": ["error", { "allow": ["warn"] }]
   },
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "linterOptions": {
